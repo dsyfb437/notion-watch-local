@@ -1,0 +1,10 @@
+node_modules/
+dist/
+release/
+preview/index.html
+preview/dashboard.js
+preview/dashboard.css
+*.log
+.env
+.env.*
+.DS_Store

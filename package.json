@@ -1,0 +1,30 @@
+{
+  "name": "notion-watch-local",
+  "version": "0.2.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "check": "tsc --noEmit",
+    "test": "node --import tsx --test tests/*.test.ts",
+    "format": "prettier --write src tests scripts dashboard.html dashboard.css manifest.json package.json build.mjs tsconfig.json README.md CHANGELOG.md PRIVACY.md CONTRIBUTING.md .github",
+    "format:check": "prettier --check src tests scripts dashboard.html dashboard.css manifest.json package.json build.mjs tsconfig.json README.md CHANGELOG.md PRIVACY.md CONTRIBUTING.md .github",
+    "package": "node scripts/package.mjs",
+    "preview": "node scripts/preview.mjs"
+  },
+  "devDependencies": {
+    "@types/chrome": "0.3.7",
+    "@types/node": "26.6.6",
+    "esbuild": "0.28.2",
+    "fake-indexeddb": "6.2.8",
+    "fflate": "0.8.3",
+    "happy-dom": "21.0.4",
+    "prettier": "3.6.2",
+    "tsx": "4.23.15",
+    "typescript": "7.0.2"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "license": "MIT"
+}

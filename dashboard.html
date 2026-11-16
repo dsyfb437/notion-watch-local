@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>周报动态 · 更新收件箱</title>
+    <link rel="stylesheet" href="dashboard.css" />
+  </head>
+  <body>
+    <div class="app">
+      <aside class="sidebar">
+        <a class="brand" href="#inbox"
+          ><span class="brand-mark" aria-hidden="true">N<span>·</span></span
+          ><span>周报动态<small>NOTION WATCH</small></span></a
+        >
+        <div class="side-label">工作空间</div>
+        <a
+          id="source-link"
+          class="subscription"
+          href="#"
+          target="_blank"
+          rel="noopener noreferrer"
+          ><span class="source-icon" aria-hidden="true">↗</span
+          ><span id="source-name">我的周报订阅</span></a
+        >
+        <nav aria-label="主导航">
+          <a
+            id="inbox-link"
+            class="nav-active"
+            href="#inbox"
+            aria-current="page"
+            ><span aria-hidden="true">◉</span> 更新收件箱
+            <span id="nav-unread" class="nav-count">0</span></a
+          ><button id="settings-link">
+            <span aria-hidden="true">⚙</span> 订阅设置</button
+          ><button id="logs-link">
+            <span aria-hidden="true">≡</span> 运行日志
+          </button>
+        </nav>
+        <div class="side-bottom">
+          <span class="privacy-dot"></span> 数据仅保存在本机<small id="version"
+            >本地只读</small
+          >
+        </div>
+      </aside>
+      <main id="inbox">
+        <header class="page-header">
+          <div>
+            <div class="eyebrow">YOUR WORKSPACE, CAUGHT UP.</div>
+            <h1 id="view-title">更新收件箱</h1>
+            <p id="view-description">你关注的页面，有新动静了。</p>
+          </div>
+          <div class="header-actions">
+            <button id="stop" class="quiet" hidden>停止检查</button
+            ><button id="start" class="primary">
+              <span aria-hidden="true">↻</span> 检查更新
+            </button>
+          </div>
+        </header>
+        <p
+          id="message"
+          class="message"
+          role="status"
+          aria-live="polite"
+          hidden
+        ></p>
+        <div id="inbox-view">
+          <section class="overview" aria-label="动态概览">
+            <div>
+              <span class="stat-label">未读动态</span
+              ><strong id="unread-count">0</strong>
+            </div>
+            <div>
+              <span class="stat-label">今天发现</span
+              ><strong id="today-count">0</strong>
+            </div>
+            <div class="last-check">
+              <span class="stat-label">最近检查</span
+              ><strong id="last-check">尚未检查</strong
+              ><span id="schedule" class="muted">手动检查</span>
+            </div>
+          </section>
+          <div class="status-line">
+            <span id="status-dot" class="status-dot"></span
+            ><span id="summary">正在读取本地记录…</span
+            ><button id="refresh" class="text-button">刷新</button>
+          </div>
+          <section class="inbox-panel" aria-label="更新动态">
+            <div class="inbox-toolbar">
+              <div class="filters" role="tablist" aria-label="动态筛选">
+                <button id="filter-unread" role="tab" aria-selected="true">
+                  未读 <span id="filter-count">0</span></button
+                ><button id="filter-all" role="tab" aria-selected="false">
+                  全部动态
+                </button>
+              </div>
+              <div class="inbox-tools">
+                <label class="search"
+                  ><span aria-hidden="true">⌕</span
+                  ><input
+                    id="search"
+                    type="search"
+                    placeholder="搜索页面、作者或周报"
+                    aria-label="搜索页面、作者或周报" /></label
+                ><button id="read-all" class="text-button">全部标为已读</button>
+              </div>
+            </div>
+            <div
+              id="updates"
+              role="tabpanel"
+              aria-labelledby="filter-unread"
+              class="feed"
+              aria-live="polite"
+            ></div>
+            <button id="more" class="load-more" hidden>显示更多动态</button>
+            <p class="feed-note">
+              记录页面的最近编辑信息，点击页面标题查看原文。
+            </p>
+          </section>
+        </div>
+        <details id="settings" class="drawer" hidden>
+          <summary>
+            <span>订阅设置<small>检查频率、通知与后台显示</small></span
+            ><span class="chevron" aria-hidden="true">⌄</span>
+          </summary>
+          <div class="drawer-body">
+            <label class="field"
+              >订阅入口<input
+                id="root"
+                type="url"
+                placeholder="https://app.notion.com/…"
+                autocomplete="off"
+              /><small
+                >支持 app.notion.com
+                的页面或数据库链接；更换入口会切换独立记录，原有数据保留。</small
+              ></label
+            >
+            <div class="settings-grid">
+              <label class="field"
+                >检查频率<select id="interval">
+                  <option value="15">每 15 分钟</option>
+                  <option value="30">每 30 分钟</option>
+                  <option value="60">每小时</option>
+                  <option value="120">每 2 小时</option>
+                </select></label
+              ><label class="toggle-row"
+                ><input id="enabled" type="checkbox" /><span
+                  >自动检查<small>Chrome 运行时按频率检查</small></span
+                ></label
+              ><label class="toggle-row"
+                ><input id="notify" type="checkbox" /><span
+                  >桌面通知<small>发现更新后提醒我</small></span
+                ></label
+              ><label class="toggle-row"
+                ><input id="collapsetabs" type="checkbox" /><span
+                  >折叠检查标签页<small
+                    >收进一个标签组，减少标签栏占用</small
+                  ></span
+                ></label
+              >
+            </div>
+            <p class="hint">
+              折叠标签组需要额外的 Chrome
+              标签组权限。组名仍会显示；检查页不会抢焦点，完成或停止后会清理未被你接管的页面。
+            </p>
+            <div class="setting-actions">
+              <button id="save" class="primary">保存设置</button
+              ><button id="grant" class="secondary">授权读取 Notion</button
+              ><button id="reset-settings" class="text-button" disabled>
+                撤销未保存更改
+              </button>
+            </div>
+            <p
+              id="settings-status"
+              role="status"
+              aria-live="polite"
+              class="settings-status"
+            >
+              正在读取设置…
+            </p>
+            <details class="advanced">
+              <summary>高级设置</summary>
+              <div class="advanced-body">
+                <label class="field"
+                  >同时检查<select id="concurrency">
+                    <option value="1">1 页</option>
+                    <option value="2">2 页</option>
+                    <option value="3">3 页</option>
+                    <option value="4">4 页</option>
+                    <option value="5">5 页</option>
+                    <option value="6">6 页</option>
+                  </select></label
+                ><label class="check"
+                  ><input
+                    id="recentonly"
+                    type="checkbox"
+                  />只检查近期周报</label
+                ><label class="check"
+                  ><input id="incremental" type="checkbox" />增量扫描</label
+                ><label class="check"
+                  ><input id="fastnav" type="checkbox" />快速切换（实验）</label
+                ><label class="check"
+                  ><input
+                    id="windowmode"
+                    type="checkbox"
+                  />独立检查窗口（实验）</label
+                >
+                <p class="hint">
+                  近期范围为本周，周一额外包含上一周。增量扫描复用未变化页面的子页列表，每
+                  24
+                  小时重新发现。独立窗口会显示一个小窗口，一次检查一页；切过去操作或最小化时暂停。
+                </p>
+              </div>
+            </details>
+          </div>
+        </details>
+        <details id="logs" class="drawer" hidden>
+          <summary>
+            <span
+              >运行日志<small id="log-caption">检查进度与诊断记录</small></span
+            ><span class="chevron" aria-hidden="true">⌄</span>
+          </summary>
+          <div class="drawer-body">
+            <div id="run" class="run-detail">暂无运行记录</div>
+            <div class="log-actions">
+              <button id="single" class="secondary">仅检查入口页</button
+              ><button id="retry" class="secondary">重试失败页</button>
+            </div>
+            <pre id="errors" class="log-output">暂无日志</pre>
+            <details id="page-index" class="page-index">
+              <summary>页面索引 <span id="page-count">0</span></summary>
+              <div class="table-wrap">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>页面 / 所属周报</th>
+                      <th>最近编辑</th>
+                      <th>检查记录</th>
+                    </tr>
+                  </thead>
+                  <tbody id="pages"></tbody>
+                </table>
+              </div>
+            </details>
+          </div>
+        </details>
+        <footer>只读监测 · 不保存正文 · 不修改 Notion 页面</footer>
+      </main>
+    </div>
+    <script type="module" src="dashboard.js"></script>
+  </body>
+</html>

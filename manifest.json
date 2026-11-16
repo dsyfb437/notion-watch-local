@@ -1,0 +1,21 @@
+{
+  "manifest_version": 3,
+  "name": "Notion 周报动态 · 本地只读",
+  "version": "0.2.0",
+  "description": "通过现有访客会话逐页检查最近编辑者和时间；数据只存本机。",
+  "permissions": ["storage", "alarms", "scripting"],
+  "optional_permissions": ["notifications", "tabGroups"],
+  "optional_host_permissions": ["https://app.notion.com/*"],
+  "background": {
+    "service_worker": "worker.js",
+    "type": "module"
+  },
+  "action": {
+    "default_title": "打开周报动态"
+  },
+  "options_page": "dashboard.html",
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'none'; connect-src 'none'"
+  },
+  "minimum_chrome_version": "120"
+}
